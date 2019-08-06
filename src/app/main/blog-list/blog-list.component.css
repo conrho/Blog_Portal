@@ -1,0 +1,49 @@
+*{
+  box-sizing: border-box;
+}
+
+.section {
+  float: left;
+  width: 33%;
+  padding: 0 10px;
+}
+
+.table {
+  margin: 0 -5px;
+}
+
+/* Clear floats after the columns */
+.table:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.blog {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  text-align: center;
+  height: 100%;
+}
+
+.blog-footer{
+  color: grey;
+}
+
+@media screen and (max-width: 750px) {
+  .section {
+    width: 50%;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+}
+
+.categoryBox{
+  font-size: 20px;
+  text-align: center;
+}
+
+.errorNotice{
+  font-size: 30px;
+}

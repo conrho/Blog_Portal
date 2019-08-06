@@ -1,0 +1,120 @@
+<div style="display: inline; margin: 20px;">
+  <h1 style="display: inline; margin: 5px;" >Admin Page</h1>
+  <p style= "margin: 20px;" class="lead">You are currently logged in as {{userLoggedIn.firstName}}.</p>
+  <div>
+  <button style="display: inline; margin: 20px;" class="btn btn-primary btn-sm" [routerLink]="['/main']" role="button">Return home</button>
+      <button style="display: inline; margin: 20px;" *ngIf="userLoggedIn.userType === 'SUPERADMINISTRATOR'" class="btn btn-primary btn-sm dropdown-toggle" role="button" id="dropdownUserLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Create User
+      </button>
+<div class="signup-page" style="margin: 20px;" class="dropdown-menu" aria-labelledby="dropdownUserLink">
+    <div class="form"><b>Create new user</b>
+      <hr>
+      <form class="signup-form">
+        <input type="text" [(ngModel)]="this.user.userId" [ngModelOptions]="{standalone: true}" id="username" placeholder="User ID"/>
+        <input type="password" [(ngModel)]="this.user.password" [ngModelOptions]="{standalone: true}" id="password" placeholder="Password"/>
+        <input type="text" [(ngModel)]="this.user.firstName" [ngModelOptions]="{standalone: true}" id="firstname" placeholder="First Name"/>
+        <input type="text" [(ngModel)]="this.user.lastName" [ngModelOptions]="{standalone: true}" id="lastname" placeholder="Surname"/>
+        <input type="text" [(ngModel)]="this.user.mobile" [ngModelOptions]="{standalone: true}" id="mobile" placeholder="Mobile"/>
+        <input type="text" [(ngModel)]="this.user.email" [ngModelOptions]="{standalone: true}" id="email" placeholder="Email"/>
+        User Type
+        <input list="usertypes" name="usertype" type="text"  id="usertype" placeholder="User Type" [(ngModel)]="this.user.userType" [ngModelOptions]="{standalone: true}">
+        <datalist id='usertypes'>
+          <option value="NORMAL">
+          <option value="ADMINISTRATOR">
+          <option value="SUPERADMINISTRATOR">
+        </datalist>
+        <button type="submit" class="btn btn-block btn-success" (click)="onSignupClick()">Sign Up</button>
+      </form >
+    </div>
+    </div>
+  </div>
+  <hr>
+</div>
+
+<mat-tab-group>
+  <mat-tab label="Users">
+<h3 style="margin: 20px;">Users</h3>
+<div class="container">
+  <div class="row">
+    <div class="card" class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor='let list of listOfUsers' style="width: 16rem; margin: 20px !important; max-width: 308px;">
+      <div class="card-body">
+        <h5 class="card-title">First name: {{list.firstName}}</h5>
+        <h5 class="card-title">Surname: {{list.lastName}}</h5>
+        <h5 class="card-title">Mobile: {{list.mobile}}</h5>
+        <h5 class="card-title">User ID: {{list.userId}}</h5>
+        <h5 class="card-title">Email: {{list.email}}</h5>
+        <h6 class="subcard-title"><b>User Type:</b>  {{list.userType}}</h6>
+        <hr/>
+        <div class="dropdown" *ngIf="userLoggedIn.userType === 'SUPERADMINISTRATOR' && userLoggedIn.userId != list.userId">
+
+        <button type="button" (click)="deleteUser(list.userId)" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete this user">
+          Delete
+        </button>
+
+          <a class="btn btn-secondary btn-sm dropdown-toggle" style="margin: 5px;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            User Type
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" (click)="changeUserType('NORMAL', list)">NORMAL</a>
+            <a class="dropdown-item" (click)="changeUserType('ADMINISTRATOR', list)">ADMINISTRATOR</a>
+            <a class="dropdown-item" (click)="changeUserType('SUPERADMINISTRATOR', list)">SUPERADMINISTRATOR</a>
+          </div>
+        </div>
+        <button type="button" [routerLink]="['/profile', list.userId]" class="btn btn-info btn-sm" style="margin-right: 20px;" data-toggle="tooltip" data-placement="top" title="To user profile">
+          More info
+        </button>
+        </div>
+      </div>
+      <div>
+    </div>
+  </div>
+</div>
+<app-pagination [pager]="pager" (setPage)= "setPage($event)"></app-pagination>
+</mat-tab>
+  <mat-tab label="Pending Blogs">
+      <div *ngIf="filteredListOfBlogs.length == 0; else elseBlock" class="alert alert-success" role="alert">
+          <h4 class="alert-heading">All clear!</h4>
+          <p>No pending blogs left to approve!</p>
+          <hr>
+          <p class="mb-0">There are currently {{filteredListOfBlogs.length}} blogs waiting to be approved.</p>
+      </div>
+      <ng-template #elseBlock> <div class="alert alert-warning" role="alert">
+          <h4 class="alert-heading">Some things to do!</h4>
+          <p>There are blog(s) awaiting approval.</p>
+          <hr>
+          <p class="mb-0">There are currently {{filteredListOfBlogs.length}} blogs waiting to be approved.</p>
+          </div>
+      </ng-template>
+  <div class="card-body" *ngFor='let bloglist of filteredListOfBlogs' style="width: 18rem; margin: 20px; float: right;">
+    <div class="card-body">
+      <h5 class="card-title"> {{bloglist.title}}</h5>
+      <h5 class="card-title"> {{bloglist.content}}</h5>
+      <h5 class="card-title"> {{bloglist.idUser}}</h5>
+      <h5 class='card-title'> {{bloglist.category}} </h5>
+      <h6 class="subcard-title" style="font-style: italic; color: grey; font-weight: 300;"> {{bloglist.state}}</h6>
+      <button type="button" (click)="approveBlog('PUBLISHED', bloglist)" class="btn btn-success btn-sm" style="margin: 5px;" data-toggle="tooltip" data-placement="top" title="Approve this blog">
+        Approve
+      </button>
+     <div class="dropdown">
+      <a class="btn btn-secondary btn-sm dropdown-toggle" style="margin: 5px;" href="#" role="button" id="dropdownUnsatisfactoryLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Unsatisfactory
+        </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownUnsatisfactoryLink">
+              <a id="unsatisfactory" class="dropdown-item" >Doesn't meet blog criteria</a>
+              <a id="unsatisfactory" class="dropdown-item" >Abusive or disruptive language/behaviour</a>
+              <a id="unsatisfactory" class="dropdown-item" >Other</a>
+            </div>
+          </div>
+      <button type="button" (click)="deleteBlog(bloglist.id)" class="btn btn-danger btn-sm" style="margin: 5px;" data-toggle="tooltip" data-placement="top" title="Delete this blog">
+          Delete
+        </button>
+        <button type="button" [routerLink]="['/blogviewer',bloglist.id]" class="btn btn-info btn-sm" style="margin: 5px;" data-toggle="tooltip" data-placement="top" title="View full blog post">
+          View post
+        </button>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+

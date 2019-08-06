@@ -1,0 +1,140 @@
+.blogPage {
+  margin: auto;
+  text-align: center;
+}
+
+.blog {
+  width: 750px;
+  min-height: 600px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  text-align: left;
+  position: relative;
+  margin: auto;
+  word-wrap: break-word;
+  /*
+  overflow-y: auto;
+  */
+}
+
+@media screen and (max-width: 750px) {
+  .blog{
+    width: auto;
+  }
+  .comment_block{
+    width: auto;
+  }
+}
+
+h1 {
+  text-align: center;
+  font-size: 50px;
+}
+
+.comment_block {
+  margin-top: 30px;
+  width: 65%;
+  max-height: 500px;
+  overflow-y: auto;
+
+  margin: 0 auto;
+  padding: 10px;
+}
+.create_new_comment {
+  width: 100%;
+  padding: 20px 0;
+}
+
+.edit_buttons{
+  padding: 25px;
+  text-align: center;
+}
+
+.input_comment {
+  display: inline-block;
+  vertical-align: middle;
+
+  margin-left: 10px;
+  width: 90%;
+}
+.input[type='text'] {
+  width:100%;
+  font-weight: 300;
+  font-size: 1.3rem;
+
+  padding: 10px;
+
+  border: none;
+  border-bottom: 2px solid lighten(GREY, 15%);
+}
+.new_comment {
+  width: 100%;
+  height: auto;
+  padding: 20px 0;
+  border-top: 1px solid lighten(GREY, 10%);
+}
+.user_comment {
+  list-style-type: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.comment_body {
+  display: inline-block;
+  vertical-align: middle;
+
+  width: calc(100% - 75px);
+  min-height: 30px;
+  margin-left: 10px;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  color: #555;
+  background-color: WHITE;
+  border-bottom: 2px solid lighten(GREY, 15%);
+}
+
+i:hover {
+  color: red;
+
+}
+
+.rating {
+  text-align: center;
+}
+
+.rating:not(:checked) > input {
+  position:absolute;
+  top:-9999px;
+  clip:rect(0,0,0,0);
+}
+
+.rating:not(:checked) > label {
+  float:right;
+  width:1em;
+  padding:0.1em;
+  overflow:hidden;
+  white-space:nowrap;
+  cursor:pointer;
+  font-size:200%;
+  line-height:1.2;
+  color:#ddd;
+}
+
+.rating:not(:checked) > label:before {
+  content: '★ ';
+}
+
+.rating > input:checked ~ label {
+  color: #f70;
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: gold;
+}
+
+
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+  color: #ea0;
+}

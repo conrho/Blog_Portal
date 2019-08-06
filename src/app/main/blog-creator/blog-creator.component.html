@@ -1,0 +1,56 @@
+<!--
+<div id="success_message" *ngIf="success">
+  {{success_message}}
+</div>
+<div id="error_message" *ngIf="error">
+  {{error_message}}
+</div>
+-->
+<h1>Write your blog!</h1>
+<div *ngIf="blogCreated" class="alert alert-success" id="successMessage"
+
+role="alert">
+    Blog created! An admin now must approve this.
+  </div>
+  <div *ngIf="blogSaved" class="alert alert-success" id="successMessage"
+  style=
+  "position: fixed;
+  top: 50%; left:
+  50%; transform:
+  translate(-50%, -50%);
+  width: 50%;"
+  role="alert">
+    Blog saved successfully!
+  </div>
+<div id="forms">
+  <div>
+    <form id="title_form">
+      <p>
+        <label for="title">Title:</label>
+        <input type="text" name="title" placeholder="Choose a title" id="title" value="Enter title here" [(ngModel)]="this.blog.title" required>
+      </p>
+    </form>
+  </div>
+  <div>
+    <form id="category_form">
+      <p>
+        <label for="title">Category:</label>
+        <select required id="category" [(ngModel)]="this.blog.category" name="category">
+          <option value="" disabled selected>Select your option</option>
+          <option *ngFor="let topic of listOfCategories" value="">{{topic}}</option>
+        </select>
+      </p>
+    </form>
+  </div>
+  <div id="text-editor">
+    <!--<app-ngx-editor height="300px" [placeholder]="'Enter text here...'" [spellcheck]="true" [(ngModel)]="this.blog.content"
+      id="text_editor" required></app-ngx-editor> -->
+      <ckeditor [editor]="Editor" data="{{this.blog.content}}"></ckeditor>
+  </div>
+  <div *ngIf="activeButtons">
+    <button type="submit" (click)="saveBlog()" *ngIf="this.blog.category != null">Save as Draft</button>
+    <button type="submit" (click)="publishBlog()" *ngIf="this.blog.category != null">Publish Blog</button>
+    <button type="reset" (click)="resetBlog()">Reset</button>
+    <button *ngIf="this.loginService.userLoggedIn.userType === 'SUPERADMINISTRATOR' && this.blog.category != null" style="float: right;" type="submit" (click)="publishBlogAdmin()" >Publish Blog (admin)</button>
+  </div>
+</div>

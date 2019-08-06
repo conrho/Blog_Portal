@@ -1,0 +1,19 @@
+<div *ngIf="detailsChanged" class="alert alert-success" id="successMessage"
+
+role="alert">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Success!</strong> Selected details have been changed. Rerouting...
+  </div>
+<div class="edit-details">
+  <div class="form">
+    <form class="signup-form">
+      <input type="text" #username id="username"  [(ngModel)]="this.User.userId" [ngModelOptions]="{standalone: true}" disabled/>
+      <input type="text" placeholder="First Name" #firstname id="firstname" firstname.value='' [(ngModel)]="this.User.firstName" [ngModelOptions]="{standalone: true}"/>
+      <input type="text" placeholder="Last Name" #lastname id="lastname" lastname.value='' [(ngModel)]="this.User.lastName" [ngModelOptions]="{standalone: true}"/>
+      <input type="number" placeholder="Mobile" #mobile id="mobile" mobile.value='' [(ngModel)]="this.User.mobile" [ngModelOptions]="{standalone: true}"/>
+      <input type="email" placeholder="Email" #email id="email" email.value='' [(ngModel)]="this.User.email" [ngModelOptions]="{standalone: true}"/>
+      <button type="submit" (click)="editDetails()" value="click" id="edit_details">Edit Details</button>
+    </form >
+  </div>
+</div>
+

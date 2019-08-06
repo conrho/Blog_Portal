@@ -1,0 +1,9 @@
+<div class="login-page">
+    <div class="form">
+      <p *ngIf='!loginSuccess' class='errorMessage'>Username and/or Password not recognised</p>
+        <input [(ngModel)]='userCredentials.userName' placeholder="username"/>
+        <input [(ngModel)]='userCredentials.password' (keydown.enter)="onLoginClick()" placeholder="password" type="password"/>
+        <button type="button" (click)="onLoginClick()">login</button>
+        <p class="message">Not registered? <a [routerLink]="['/signup']">Create an account</a></p>
+    </div>
+  </div>

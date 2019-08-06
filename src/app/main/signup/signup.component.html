@@ -1,0 +1,13 @@
+<div class="signup-page">
+  <div class="form">
+    <form class="signup-form">
+      <input type="text" [(ngModel)]="this.user.userId" [ngModelOptions]="{standalone: true}" id="username" placeholder="User ID"/>
+      <input type="password" [(ngModel)]="this.user.password" [ngModelOptions]="{standalone: true}" id="password" placeholder="Password"/>
+      <input type="text" [(ngModel)]="this.user.firstName" [ngModelOptions]="{standalone: true}" id="firstname" placeholder="First Name"/>
+      <input type="text" [(ngModel)]="this.user.lastName" [ngModelOptions]="{standalone: true}" id="lastname" placeholder="Surname"/>
+      <input type="text" [(ngModel)]="this.user.mobile" [ngModelOptions]="{standalone: true}" id="mobile" placeholder="Mobile"/>
+      <input type="text" [(ngModel)]="this.user.email" [ngModelOptions]="{standalone: true}" id="email" placeholder="Email"/>
+      <button [routerLink]="['/login']" type="submit" class="btn btn-block btn-success" (click)="onSignupClick()">Sign Up</button>
+    </form >
+  </div>
+</div>

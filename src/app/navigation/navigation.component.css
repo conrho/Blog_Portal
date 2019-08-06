@@ -1,0 +1,20 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: blue;
+}
+
+li {
+  float: left;
+}
+
+button:hover:not(.active){
+  background-color: darkblue;
+}
+
+.navBtn{
+  padding-left: 7.5px;
+  padding-right: 7.5px;
+}

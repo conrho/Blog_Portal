@@ -1,0 +1,16 @@
+footer{
+  font-size: 15px;
+  position: relative;
+  height: 30px;
+  align-content: center;
+}
+header,footer{
+  background-color: blue;
+  color: white;
+}
+
+h1{
+  font-size: 50px;
+  padding: 20px;
+}
+

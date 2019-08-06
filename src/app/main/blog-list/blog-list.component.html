@@ -1,0 +1,23 @@
+<div>
+  <p class="categoryBox">
+    <label for="title" style="margin:16px">Category:</label>
+    <select id="category" default (change)="changeCategory()" [(ngModel)]="this.categorySelected" name="category">
+      <option value="" disabled selected hidden> Select an option</option>
+      <option *ngFor="let topic of listOfCategories" [value]="topic">{{topic}}</option>
+    </select>
+  </p>
+</div>
+<div class="container">
+  <div class="row" >
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor="let blog of filteredListOfBlogs">
+        <div class="blog">
+            <a [routerLink]="['/blogviewer',blog.id]"><h1>{{blog.title}}</h1></a>
+            <div>
+                <div style="word-wrap:break-word" [innerHTML]="blog.content.substring(0,180) + '...'"></div>
+            </div>
+            <p class="blog-footer">by <a [routerLink]="['/profile',blog.idUser]" >{{blog.idUser}}</a></p>
+          </div>
+    </div>
+  </div>
+</div>
+<p id="errorNotice" *ngIf="filteredListOfBlogs.length == 0">No {{this.categorySelected}} blogs found!</p>

@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="font-size: 20px">
+    <span class="navbar-brand h1" style="font-size: xx-large; margin-right: 0px">Worldline Blogs</span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav d-flex flex-row" style="width:100%; font-weight:500;">
+        <div class="navBtn" style="padding-left: 15px">
+          <a class="nav-item nav-link" [routerLink]="['/main']" >Home</a>
+        </div>
+        <div class="navBtn" *ngIf="loginService.userLoggedIn != null">
+          <a class="nav-item nav-link"  [routerLink]="['/profile']">Profile</a>
+        </div>
+        <div class="navBtn" *ngIf="loginService.userLoggedIn != null">
+            <a class="nav-item nav-link"  [routerLink]="['/blogcreator']">Write A Blog</a>
+          </div>
+        <div class="navBtn" *ngIf="loginService.userLoggedIn != null && loginService.userLoggedIn.userType.toString() != 'NORMAL'">
+          <a class="nav-item nav-link"[routerLink]="['/adminpage']">Admin Page</a>
+        </div>
+        <div class="navBtn" *ngIf="loginService.userLoggedIn != null" style="margin-left: auto">
+          <a class="nav-item nav-link"   [routerLink]="['/main']" (click)="loginService.logout()">Logout</a>
+        </div>
+        <div class="navBtn" *ngIf="loginService.userLoggedIn == null" style="margin-left: auto" >
+          <a class="nav-item nav-link" [routerLink]="['/login']">Login/Signup</a>
+        </div>
+      </div>
+    </div>
+  </nav>

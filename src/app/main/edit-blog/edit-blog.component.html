@@ -1,0 +1,38 @@
+<h1>Edit Your Blog.</h1>
+<div *ngIf="blogEdited" class="alert alert-success" id="successMessage"
+
+role="alert">
+    Blog edited! An admin now must re-approve this.
+  </div>
+  <div *ngIf="blogSaved" class="alert alert-success" id="successMessage"
+  role="alert">
+    Blog saved successfully!
+  </div>
+<div id="forms">
+  <div>
+    <form id="title_form">
+      <p>
+        <label for="title">Title:</label>
+        <input type="text" name="title" id="title" value="Enter title here" [(ngModel)]="this.blog.title" required>
+      </p>
+    </form>
+  </div>
+  <div>
+    <form id="category_form">
+      <p>
+        <label for="title">Category:</label>
+        <select id="category" name="category"  [(ngModel)]="this.blog.category">
+          <option *ngFor="let topic of listOfCategories" [value]="topic">{{topic}}</option>
+        </select>
+      </p>
+    </form>
+  </div>
+  <div id="text-editor">
+    <app-ngx-editor height="300px" [spellcheck]="true"
+      id="text_editor" [(ngModel)]="this.blog.content" [ngModelOptions]="{standalone: true}"required></app-ngx-editor>
+  </div>
+  <div>
+    <button type="submit" (click)="saveBlog()" *ngIf="this.blog.category != null">Save as Draft</button>
+    <button type="submit" (click)="publishBlog()" *ngIf="this.blog.category != null">Edit Blog</button>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+[
+    {
+        "userId": "user1",
+        "password": "password1",
+        "firstName": "Connor",
+        "surname" : "Rhodes",
+        "mobile" : "555-0121",
+        "email" : "email@myemail.com"
+
+    },
+    {
+        "userId": "user2",
+        "password": "password2",
+        "firstName": "Andy",
+        "surname" : "Thomson",
+        "mobile" : "555-0122",
+        "email" : "email@myemail.com"
+    },
+    {
+        "userId": "user3",
+        "password": "password3",
+        "firstName": "Matt",
+        "surname" : "Goodger",
+        "mobile" : "555-0123",
+        "email" : "email@myemail.com"
+    },
+    {
+        "userId": "user4",
+        "password": "password1",
+        "firstName": "Kes",
+        "surname" : "Walker",
+        "mobile" : "555-0124",
+        "email" : "email@myemail.com"
+    }
+]

@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "title": "blog 1",
+        "content": "yes very nice blog bro",
+        "category": "action"
+    },
+    {
+        "id": 2,
+        "title": "blog 2",
+        "content": "yes very nice blog man",
+        "category": "action"
+    },
+    {
+        "id": 3,
+        "title": "blog 3",
+        "content": "yes very nice blog dude",
+        "category": "boats"
+    },
+    {
+        "id": 4,
+        "title": "blog 4",
+        "content": "yes very nice blog buddy",
+        "category": "lifestyle"
+    }
+]

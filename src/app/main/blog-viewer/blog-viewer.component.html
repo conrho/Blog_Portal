@@ -1,0 +1,62 @@
+<div *ngIf="blogDeleted" class="alert alert-success" id="successMessage"
+role="alert">
+    Blog deleted successfully! Rerouting...
+  </div>
+<div *ngIf="blog !== null">
+<div class="blogPage">
+
+    <div class="pageTop">
+      <h1>{{ blog.title }}</h1><p>by <a [routerLink]="['/profile', blog.idUser]">{{blog.idUser}}</a></p>
+    </div>
+    <div class="blog">
+      <div [innerHTML]="blog.content"></div>
+    </div>
+</div>
+
+<div *ngIf="canManageBlog" class="edit_buttons">
+  <button [routerLink]="['/edit-blog', id]" class="btn btn-warning">Edit Blog</button>
+  <button (click)="deleteBlog(id)" class="btn btn-danger btn-md">Delete Blog</button>
+</div>
+
+<div style="text-align: center; margin: auto; width: fit-content;" *ngIf="userLoggedIn && enableComments">
+  <span>Click to contribute your rating:</span>
+  <fieldset class="rating" style="padding-right: 30px;">
+
+   <input type="radio" value="5" [checked]="UsersRating.rate>=4.5" />
+   <label (click)='submitRating(5)'>5 stars</label>
+
+   <input type="radio" value="4" [checked]="UsersRating.rate>=3.5" />
+   <label (click)='submitRating(4)'>4 stars</label>
+
+   <input type="radio" value="3" [checked]="UsersRating.rate>=2.5" />
+   <label (click)='submitRating(3)'>3 stars</label>
+
+   <input type="radio" value="2" [checked]="UsersRating.rate>=1.5" />
+   <label (click)='submitRating(2)'>2 stars</label>
+
+   <input type="radio" value="1" [checked]="UsersRating.rate>=0.5" />
+   <label (click)='submitRating(1)'>1 star</label>
+  </fieldset>
+  <span>Average Rating: {{averageRating}}</span>
+</div>
+
+
+<div class="comment_block"  #scrollMe [scrollTop]="scrollMe.scrollHeight" *ngIf="enableComments">
+  <div *ngFor="let comment of comments" class="new_comment">
+    <ul class="user_comment">
+      <div class="top_comment_bar">
+          <a [routerLink]="['/profile',comment.idUser]">{{comment.idUser}}</a>
+      </div>
+      <div class="comment_body">
+        <p style="display: inline-block">{{comment.content}}</p>
+        <i style="display: inline-block; float: right;" *ngIf="canDeleteComments || loginService.getLoggedInUser().userId === comment.idUser" class="fa fa-trash" (click)="deleteComment(comment)" ></i>
+      </div>
+    </ul>
+  </div>
+  <div class="create_new_comment">
+    <div class="input_comment">
+      <input *ngIf="userLoggedIn" (keydown.enter)="submitComment()" maxlength="250" [(ngModel)]="this.newComment.content" class="input" type="text" placeholder="Enter your comment...">
+    </div>
+  </div>
+</div>
+</div>

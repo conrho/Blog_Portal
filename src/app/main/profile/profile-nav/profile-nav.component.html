@@ -1,0 +1,45 @@
+<div *ngIf="passwordChanged" class="alert alert-success alert-dismissible" id="successMessage"
+role="alert">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Success!</strong> Password has been changed.
+  </div>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <div *ngIf="displayCurrentUser">
+    <h5 class="card-title">Hello {{userLoggedIn.firstName}}!</h5>
+    <h5 class="card-title">You are a {{userLoggedIn.userType}} user!</h5>
+    </div>
+    <div *ngIf="!displayCurrentUser">
+      <h1>{{profileId}}'s profile</h1>
+    </div>
+    <p class="card-text">Member for:</p>
+    <p class="card-text">Blog Posts: {{listOfBlogs.length}} </p>
+    <p class="card-text">Comments:</p>
+    <p *ngIf="!averageRating == null" class="card-text">Rating: {{averageRating}}</p>
+    <p *ngIf="averageRating == null" class="card-text">Rating: No ratings yet!</p>
+  </div>
+  <div class="card-body">
+    <a *ngIf="!displayCurrentUser" href="#"><i class="fas fa-envelope"></i> {{profileId}}</a>
+  </div>
+
+<div *ngIf="displayCurrentUser">
+  <button class="profileButton" [routerLink]="['/blogcreator']" type="menu">Create your blog!</button>
+  <button style="direction: rtl;" class="profileButton" [routerLink]="['/edit-details']" type="menu">Edit Details</button>
+  <a class="btn btn-primary btn-sm dropdown-toggle"  style="margin-top: 5px; width: 100%;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Change Password
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <div class="edit-details">
+          <div class="form">
+            <form class="signup-form">
+              <input type="password" #password id="password" [(ngModel)]="oldPassword" [ngModelOptions]="{standalone: true}" placeholder="enter current password" />
+              <input type="password" password.value='' id="new-password" [(ngModel)]="password1" [ngModelOptions]="{standalone: true}" placeholder="new password" />
+              <input type="password" #password id="confirm-password" [(ngModel)]="password2" [ngModelOptions]="{standalone: true}" password.value='' placeholder="confrim password" />
+              <button type="submit" class="btn btn-success btn-sm" (click)="editDetails()" value="click" id="edit_details">Confirm</button>
+            </form >
+          </div>
+      </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,45 @@
+h1{
+    text-align: center;
+}
+#forms{
+    width:700px;
+    margin:auto;
+}
+#title_form, #category_form {
+    width:400px;
+}
+#text-editor {
+    width: 700px;
+    margin: auto;
+}
+#title{
+    font-style: italic;
+}
+#success_message{
+    background-color: green;
+    color: white;
+    text-align:center;
+    font-size:20px;
+    font-weight:bold;
+}
+#error_message{
+    background-color:red;
+    color: black;
+    text-align:center;
+    font-size:20px;
+    font-weight:bold;
+}
+form  {
+     display: table;      
+    }
+p     {
+     display: table-row;  padding-bottom: 10px;
+    }
+label {
+     display: table-cell; text-align: left;
+}
+input {
+     display: table-cell; width:100%;
+}
+select { display: table-cell; width:100%;
+}

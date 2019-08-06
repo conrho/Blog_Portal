@@ -1,0 +1,9 @@
+div{
+    display:block ;
+    float: none;
+}
+
+i:hover {
+  color: red;
+
+}
